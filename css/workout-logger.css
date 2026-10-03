@@ -1,0 +1,181 @@
+/* ====================================================================
+   GGYM ACTIVE WORKOUT LOGGER STYLESHEET
+   log-workout.html
+   ==================================================================== */
+
+.logger-header {
+  margin-bottom: 16px;
+}
+
+.logger-select-card {
+  margin-bottom: 14px;
+}
+
+.logger-progress-card {
+  margin-bottom: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+
+.progress-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.logger-exercises-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Individual Exercise Card */
+.logger-exercise-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 12px;
+  box-shadow: var(--shadow);
+}
+
+.exercise-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.exercise-title-group h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.exercise-category-tag {
+  font-size: var(--font-badge);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.btn-add-set {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-size: var(--font-label);
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.btn-add-set:active {
+  transform: scale(0.96);
+  background: rgba(200, 255, 61, 0.1);
+}
+
+/* Set Table Grid */
+.set-grid-header {
+  display: grid;
+  grid-template-columns: 36px 1fr 1fr 44px 32px;
+  gap: 8px;
+  text-align: center;
+  font-size: var(--font-eyebrow);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  padding: 0 4px;
+}
+
+.set-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.set-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 1fr 44px 32px;
+  gap: 8px;
+  align-items: center;
+}
+
+.set-number-label {
+  font-size: var(--font-body-sm);
+  font-weight: 700;
+  color: var(--muted);
+  text-align: center;
+}
+
+.set-input {
+  min-height: 44px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  text-align: center;
+  font-size: var(--font-body);
+  font-weight: 600;
+  outline: none;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.set-input:focus {
+  border-color: var(--border-focus);
+}
+
+.btn-remove-set {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 32px;
+  border-radius: 8px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.btn-remove-set:hover {
+  color: var(--danger);
+}
+
+.exercise-notes-input {
+  margin-top: 12px;
+  min-height: 60px;
+  font-size: var(--font-body-sm);
+  background: var(--surface-2);
+}
+
+/* Global Session Notes */
+.session-notes-card {
+  margin-bottom: 24px;
+}
+
+/* Sticky Bottom Finish Floating Area */
+.sticky-finish-bar {
+  position: sticky;
+  bottom: calc(66px + env(safe-area-inset-bottom));
+  margin: 0 -4px;
+  padding: 10px 0;
+  background: linear-gradient(180deg, transparent 0%, var(--bg) 40%);
+  z-index: 50;
+}

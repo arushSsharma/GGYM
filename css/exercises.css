@@ -1,0 +1,192 @@
+/* ====================================================================
+   GGYM EXERCISE LIBRARY STYLESHEET
+   exercises.html
+   ==================================================================== */
+
+.library-header {
+  margin-bottom: 16px;
+}
+
+/* Search Bar */
+.search-box-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.search-input {
+  padding-left: 42px;
+  padding-right: 36px;
+  background: var(--surface);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  display: none;
+}
+
+.search-clear-btn.active {
+  display: block;
+}
+
+/* Category Filter Chips */
+.filter-scroll-container {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.filter-chip.active {
+  background: var(--primary);
+  color: #0B0D10;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(200, 255, 61, 0.25);
+}
+
+/* Exercise Cards List */
+.library-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.lib-exercise-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.lib-exercise-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.lib-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.lib-ex-name {
+  font-size: var(--font-h3-card);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lib-cat-pill {
+  font-size: var(--font-badge);
+  background: rgba(200, 255, 61, 0.1);
+  color: var(--primary);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.lib-meta-info {
+  font-size: var(--font-label);
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.lib-meta-info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lib-cues-text {
+  font-size: var(--font-body-sm);
+  color: #D1D5DB;
+  line-height: 1.45;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.lib-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+.btn-add-to-routine {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--font-label);
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.btn-add-to-routine:hover {
+  background: var(--primary);
+  color: #0B0D10;
+  border-color: var(--primary);
+}
+
+.btn-add-to-routine:active {
+  transform: scale(0.96);
+}
+
+.btn-add-to-routine.added {
+  background: rgba(74, 222, 128, 0.15);
+  color: var(--success);
+  border-color: var(--success);
+  pointer-events: none;
+}
