@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Dashboard — GGYM</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="app-shell">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <a href="dashboard.html" class="brand-wrap" aria-label="GGYM Home">
+        <div class="brand-mark">G</div>
+        <span class="brand-text">GGYM</span>
+      </a>
+      <a href="profile.html" class="icon-btn" aria-label="Open Profile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="page-content">
+      
+      <!-- Greeting Header -->
+      <section class="dashboard-header">
+        <div class="greeting-row">
+          <div>
+            <span class="eyebrow" id="dash-greeting-eyebrow">READY TO TRAIN</span>
+            <h1 class="greeting-title" id="dash-user-name">Loading...</h1>
+          </div>
+          <span class="dashboard-date" id="dash-date-str">--</span>
+        </div>
+      </section>
+
+      <!-- Motivational Micro-Banner -->
+      <aside class="motivation-banner">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        <span class="motivation-text" id="dash-motivation">Discipline creates freedom. Own your session today.</span>
+      </aside>
+
+      <!-- 2x2 Metabolic & Progress Metric Cards -->
+      <section class="stats-grid" aria-label="Summary Metrics">
+        
+        <div class="stat-card">
+          <span class="stat-label">Weight</span>
+          <div class="stat-value-wrap">
+            <span class="stat-value text-num" id="stat-weight">--</span>
+            <span class="stat-unit">kg</span>
+          </div>
+          <span class="stat-delta" id="stat-weight-delta">--</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">BMI</span>
+          <div class="stat-value-wrap">
+            <span class="stat-value text-num" id="stat-bmi">--</span>
+          </div>
+          <span class="stat-delta" id="stat-bmi-cat">--</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Target Calories</span>
+          <div class="stat-value-wrap">
+            <span class="stat-value text-num" id="stat-calories">--</span>
+            <span class="stat-unit">kcal</span>
+          </div>
+          <span class="stat-delta" id="stat-goal-label">Daily Target</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Streak</span>
+          <div class="stat-value-wrap">
+            <span class="stat-value text-num" id="stat-streak">0</span>
+            <span class="stat-unit">days</span>
+          </div>
+          <span class="stat-delta" id="stat-streak-msg">Keep the fire burning</span>
+        </div>
+
+      </section>
+
+      <!-- 7-Day Consistency Tracker -->
+      <section class="card weekly-card">
+        <div class="card-title-row">
+          <h2>Weekly Consistency</h2>
+          <span class="text-muted" style="font-size:0.75rem;" id="weekly-count-label">0 completed</span>
+        </div>
+        <div class="week-dots-grid" id="week-dots-container">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- Goal Progress Bar -->
+      <section class="card goal-progress-card">
+        <div class="card-title-row">
+          <h2>Goal Progress</h2>
+          <span class="text-muted text-num" style="font-size:0.75rem;" id="goal-percent">0%</span>
+        </div>
+        <div class="progress-track-bg">
+          <div class="progress-track-fill" id="goal-progress-fill"></div>
+        </div>
+        <div class="goal-labels-row">
+          <span id="goal-start-lbl">Current: -- kg</span>
+          <span id="goal-target-lbl">Target: -- kg</span>
+        </div>
+      </section>
+
+      <!-- Recent Workout Card / Empty State -->
+      <section class="card recent-workout-card" id="recent-workout-box">
+        <div class="card-title-row">
+          <h2>Latest Workout</h2>
+          <a href="history.html" class="text-muted" style="font-size: 0.75rem; text-decoration: none;">View All</a>
+        </div>
+        <div id="recent-workout-content">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- Primary Action CTA -->
+      <div class="quick-action-box">
+        <a href="workout.html" class="btn btn-primary btn-block">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"></path>
+          </svg>
+          Start Today's Workout
+        </a>
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav" aria-label="Bottom Navigation">
+      <a href="dashboard.html" class="nav-item active" aria-current="page">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+      </a>
+      <a href="workout.html" class="nav-item">
+        <span class="nav-icon">🏋️</span>
+        <span>Workout</span>
+      </a>
+      <a href="history.html" class="nav-item">
+        <span class="nav-icon">🕘</span>
+        <span>History</span>
+      </a>
+      <a href="progress.html" class="nav-item">
+        <span class="nav-icon">📊</span>
+        <span>Progress</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

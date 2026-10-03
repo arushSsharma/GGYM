@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>User Profile — GGYM</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+  <div class="app-shell">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <a href="dashboard.html" class="brand-wrap" aria-label="GGYM Home">
+        <div class="brand-mark">G</div>
+        <span class="brand-text">GGYM</span>
+      </a>
+      <a href="calculator.html" class="icon-btn" aria-label="Open Calculator">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+          <line x1="8" y1="6" x2="16" y2="6"></line>
+          <line x1="16" y1="14" x2="16" y2="18"></line>
+          <path d="M16 10h.01"></path>
+          <path d="M12 10h.01"></path>
+          <path d="M8 10h.01"></path>
+          <path d="M12 14h.01"></path>
+          <path d="M8 14h.01"></path>
+          <path d="M12 18h.01"></path>
+          <path d="M8 18h.01"></path>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+      
+      <!-- Profile Identification Header -->
+      <section class="profile-header">
+        <div class="profile-avatar" id="avatar-letter">G</div>
+        <h1 class="profile-name" id="user-display-name">Loading...</h1>
+        <span class="profile-email" id="user-display-email">--</span>
+      </section>
+
+      <!-- Baseline Physical Specs Grid -->
+      <section class="profile-specs-grid" aria-label="Personal Baseline Specs">
+        <div class="spec-card">
+          <span class="spec-label">Current Weight</span>
+          <div class="spec-val text-num" id="spec-weight">-- kg</div>
+          <span class="spec-sub">Active baseline</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">Target Weight</span>
+          <div class="spec-val text-num" id="spec-target">-- kg</div>
+          <span class="spec-sub" id="spec-target-delta">--</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">Height</span>
+          <div class="spec-val text-num" id="spec-height">-- cm</div>
+          <span class="spec-sub" id="spec-height-ft">--</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">Body Mass Index</span>
+          <div class="spec-val text-num" id="spec-bmi">--</div>
+          <span class="spec-sub" id="spec-bmi-class">--</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">Fitness Goal</span>
+          <div class="spec-val" style="font-size: 0.95rem;" id="spec-goal">General</div>
+          <span class="spec-sub">Primary strategy</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">Activity Level</span>
+          <div class="spec-val" style="font-size: 0.95rem;" id="spec-activity">Moderate</div>
+          <span class="spec-sub">Multiplier index</span>
+        </div>
+      </section>
+
+      <!-- Action Navigation Menu -->
+      <section class="profile-menu-section" aria-label="Profile actions and account settings">
+        
+        <button type="button" class="menu-item-btn" id="btn-open-log-weight">
+          <div class="menu-item-left">
+            <div class="menu-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18"></path>
+                <path d="M3 7l9-4 9 4"></path>
+                <path d="M6 13l-3 7h6l-3-7"></path>
+                <path d="M18 13l-3 7h6l-3-7"></path>
+              </svg>
+            </div>
+            <span>Update Body Weight</span>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <button type="button" class="menu-item-btn" id="btn-open-edit-profile">
+          <div class="menu-item-left">
+            <div class="menu-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+            </div>
+            <span>Edit Profile Metrics</span>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <a href="calculator.html" class="menu-item-btn">
+          <div class="menu-item-left">
+            <div class="menu-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="16" y1="14" x2="16" y2="18"></line>
+                <path d="M16 10h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M8 10h.01"></path>
+              </svg>
+            </div>
+            <span>Metabolic & Calorie Engine</span>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+
+        <button type="button" class="menu-item-btn danger-action" id="btn-logout">
+          <div class="menu-item-left">
+            <div class="menu-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+            </div>
+            <span>Sign Out</span>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+      </section>
+
+    </main>
+
+    <!-- Modal 1: Update Body Weight Modal -->
+    <div class="modal-overlay" id="modal-log-weight" role="dialog" aria-modal="true" aria-labelledby="modal-weight-title">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-weight-title">Log Body Weight</h2>
+          <button type="button" class="icon-btn" id="btn-close-weight-modal" aria-label="Close dialog">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <form id="form-log-weight">
+          <div class="form-group">
+            <label for="input-new-weight" class="form-label">New Weight (kg)</label>
+            <input type="number" step="0.1" min="30" max="300" id="input-new-weight" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="input-weight-date" class="form-label">Date</label>
+            <input type="date" id="input-weight-date" class="form-input" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="btn-submit-weight" style="margin-top: 10px;">
+            Save Measurement
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 2: Edit Profile Parameters Modal -->
+    <div class="modal-overlay" id="modal-edit-profile" role="dialog" aria-modal="true" aria-labelledby="modal-profile-title">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-profile-title">Edit Profile Metrics</h2>
+          <button type="button" class="icon-btn" id="btn-close-profile-modal" aria-label="Close dialog">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <form id="form-edit-profile">
+          <div class="form-group">
+            <label for="edit-profile-name" class="form-label">Athlete Display Name</label>
+            <input type="text" id="edit-profile-name" class="form-input" required>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="edit-profile-age" class="form-label">Age</label>
+              <input type="number" id="edit-profile-age" class="form-input" min="14" max="100" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-profile-gender" class="form-label">Gender</label>
+              <select id="edit-profile-gender" class="form-select">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="edit-profile-height" class="form-label">Height (cm)</label>
+              <input type="number" step="0.1" id="edit-profile-height" class="form-input" min="100" max="250" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-profile-target" class="form-label">Target (kg)</label>
+              <input type="number" step="0.1" id="edit-profile-target" class="form-input" min="30" max="300" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-profile-goal" class="form-label">Fitness Goal</label>
+            <select id="edit-profile-goal" class="form-select">
+              <option value="general_fitness">General Fitness (Maintenance)</option>
+              <option value="build_muscle">Build Muscle (Hypertrophy)</option>
+              <option value="strength">Strength & Power</option>
+              <option value="fat_loss">Fat Loss</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-profile-activity" class="form-label">Activity Multiplier</label>
+            <select id="edit-profile-activity" class="form-select">
+              <option value="sedentary">Sedentary (Little or no exercise)</option>
+              <option value="light">Lightly Active (1–3 days/week)</option>
+              <option value="moderate">Moderately Active (3–5 days/week)</option>
+              <option value="active">Active (6–7 days/week)</option>
+              <option value="very_active">Very Active (Physical job / 2x daily)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="btn-submit-profile-edit" style="margin-top: 10px;">
+            Save Profile Changes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav" aria-label="Bottom Navigation">
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+      </a>
+      <a href="workout.html" class="nav-item">
+        <span class="nav-icon">🏋️</span>
+        <span>Workout</span>
+      </a>
+      <a href="history.html" class="nav-item">
+        <span class="nav-icon">🕘</span>
+        <span>History</span>
+      </a>
+      <a href="progress.html" class="nav-item">
+        <span class="nav-icon">📊</span>
+        <span>Progress</span>
+      </a>
+      <a href="profile.html" class="nav-item active" aria-current="page">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script type="module" src="js/profile.js"></script>
+</body>
+</html>

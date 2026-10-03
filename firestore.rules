@@ -1,0 +1,55 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { 
+      return request.auth != null; 
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId)
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.email == request.auth.email;
+      allow update: if isOwner(userId)
+                    && request.resource.data.uid == request.auth.uid;
+      allow delete: if isOwner(userId);
+
+      match /workouts/{workoutId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && request.resource.data.workoutId is string
+                      && request.resource.data.exercises is list;
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId);
+      }
+
+      match /weightLogs/{logId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && request.resource.data.weightKg is number
+                      && request.resource.data.weightKg > 0
+                      && request.resource.data.weightKg < 500
+                      && request.resource.data.date is string;
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId);
+      }
+
+      match /exerciseLogs/{logId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId);
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId);
+      }
+    }
+
+    match /{document=**} { 
+      allow read, write: if false; 
+    }
+  }
+}

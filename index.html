@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>GGYM — Personal Fitness Tracker</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .splash-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 24px;
+    }
+    .splash-brand {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #111827;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(200, 255, 61, 0.35);
+      animation: pulseBrand 2s infinite ease-in-out;
+    }
+    @keyframes pulseBrand {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .splash-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .splash-subtitle {
+      font-size: var(--font-body);
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 260px;
+    }
+    .splash-spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <main class="splash-container">
+      <div class="splash-brand">G</div>
+      <h1 class="splash-title">GGYM</h1>
+      <p class="splash-subtitle">Train for your life. Track it properly.</p>
+      <div class="splash-spinner" id="splash-loader"></div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initAuthGuard } from './js/auth-guard.js';
+
+    // Route guard resolves state: 
+    // - Authenticated + Onboarded -> dashboard.html
+    // - Authenticated + Not Onboarded -> onboarding.html
+    // - Unauthenticated -> login.html
+    initAuthGuard((user) => {
+      if (!user) {
+        window.location.replace('login.html');
+      }
+    });
+  </script>
+</body>
+</html>

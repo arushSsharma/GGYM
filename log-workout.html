@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Active Workout — GGYM</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/workout-logger.css">
+</head>
+<body>
+  <div class="app-shell">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <a href="workout.html" class="brand-wrap" aria-label="Back to Routine Selection">
+        <div class="brand-mark">G</div>
+        <span class="brand-text">GGYM</span>
+      </a>
+      <span class="text-muted" style="font-size: 0.78rem; font-weight: 700;" id="session-timer-display">00:00</span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+      
+      <!-- Page Header -->
+      <section class="logger-header">
+        <span class="eyebrow">TODAY'S WORKOUT</span>
+        <h1 class="headline-page" id="logger-workout-name">Active Session</h1>
+      </section>
+
+      <!-- Routine Selection Switcher -->
+      <section class="card logger-select-card">
+        <label for="workout-type-select" class="form-label">Workout Routine Type</label>
+        <select id="workout-type-select" class="form-select">
+          <option value="Chest & Push">Chest & Push</option>
+          <option value="Back & Pull">Back & Pull</option>
+          <option value="Shoulders & Delts">Shoulders & Delts</option>
+          <option value="Legs & Lower Body">Legs & Lower Body</option>
+          <option value="Arms (Biceps & Triceps)">Arms (Biceps & Triceps)</option>
+          <option value="Core & Abdominals">Core & Abdominals</option>
+          <option value="Full Body Strength">Full Body Strength</option>
+          <option value="Custom Workout">Custom Workout</option>
+        </select>
+      </section>
+
+      <!-- Progress Tracking Card -->
+      <section class="logger-progress-card" aria-label="Session Completion Track">
+        <div class="progress-header-row">
+          <span>Workout Progress</span>
+          <span class="text-num" id="logger-sets-progress">0 / 0 completed</span>
+        </div>
+        <div class="progress-track-bg" style="margin: 0;">
+          <div class="progress-track-fill" id="logger-progress-bar" style="width: 0%;"></div>
+        </div>
+      </section>
+
+      <!-- Dynamic Exercises List -->
+      <section class="logger-exercises-container" id="logger-exercises-list" aria-live="polite">
+        <!-- Injected via workout-logger.js -->
+      </section>
+
+      <!-- Overall Workout Notes -->
+      <section class="card session-notes-card">
+        <label for="workout-general-notes" class="form-label">Session Notes & Observations</label>
+        <textarea id="workout-general-notes" class="form-textarea" placeholder="RPE, energy levels, barbell bar path observations..."></textarea>
+      </section>
+
+      <!-- Sticky Finish Button with Pulsing Animation -->
+      <div class="sticky-finish-bar">
+        <button type="button" class="btn btn-primary btn-block btn-finish-pulse" id="btn-finish-workout">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Finish Workout
+        </button>
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav" aria-label="Bottom Navigation">
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+      </a>
+      <a href="workout.html" class="nav-item active" aria-current="page">
+        <span class="nav-icon">🏋️</span>
+        <span>Workout</span>
+      </a>
+      <a href="history.html" class="nav-item">
+        <span class="nav-icon">🕘</span>
+        <span>History</span>
+      </a>
+      <a href="progress.html" class="nav-item">
+        <span class="nav-icon">📊</span>
+        <span>Progress</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script type="module" src="js/workout-logger.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Setup Profile — GGYM</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    .onboarding-wrap {
+      padding: 12px 0 32px;
+    }
+    .metrics-summary-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+    .metric-summary-item .label {
+      font-size: var(--font-eyebrow);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .metric-summary-item .value {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .metric-summary-item .sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <main class="page-content">
+      <div class="onboarding-wrap">
+        
+        <header style="margin-bottom: 20px;">
+          <span class="eyebrow">STEP 1 OF 1</span>
+          <h1 class="headline-page">Personal Baseline</h1>
+          <p class="text-muted">Enter your physical parameters to compute your target calories and baseline stats.</p>
+        </header>
+
+        <!-- Live Computed Summary Card -->
+        <section class="metrics-summary-card" aria-label="Computed Metabolic Baseline">
+          <div class="metric-summary-item">
+            <span class="label">BMI</span>
+            <div class="value text-num" id="display-bmi">22.0</div>
+            <span class="sub" id="display-bmi-cat">Normal</span>
+          </div>
+          <div class="metric-summary-item">
+            <span class="label">BMR</span>
+            <div class="value text-num" id="display-bmr">1,720</div>
+            <span class="sub">kcal / day</span>
+          </div>
+          <div class="metric-summary-item">
+            <span class="label">Target</span>
+            <div class="value text-num" id="display-calories">2,666</div>
+            <span class="sub">kcal / day</span>
+          </div>
+        </section>
+
+        <!-- Profile Onboarding Form -->
+        <form id="onboarding-form" class="card" novalidate>
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="input-age" class="form-label">Age</label>
+              <input type="number" id="input-age" class="form-input" min="14" max="100" value="28" required>
+            </div>
+            <div class="form-group">
+              <label for="select-gender" class="form-label">Gender</label>
+              <select id="select-gender" class="form-select">
+                <option value="male" selected>Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="input-height" class="form-label">Height (cm)</label>
+              <input type="number" step="0.1" id="input-height" class="form-input" min="100" max="250" value="182.9" required>
+            </div>
+            <div class="form-group">
+              <label for="input-weight" class="form-label">Weight (kg)</label>
+              <input type="number" step="0.1" id="input-weight" class="form-input" min="30" max="300" value="73.4" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input-target-weight" class="form-label">Target Weight (kg)</label>
+            <input type="number" step="0.1" id="input-target-weight" class="form-input" min="30" max="300" value="70.0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="select-goal" class="form-label">Fitness Goal</label>
+            <select id="select-goal" class="form-select">
+              <option value="general_fitness" selected>General Fitness (Maintenance)</option>
+              <option value="build_muscle">Build Muscle (Hypertrophy)</option>
+              <option value="strength">Strength & Power</option>
+              <option value="fat_loss">Fat Loss (Cutting)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="select-activity" class="form-label">Activity Level</label>
+            <select id="select-activity" class="form-select">
+              <option value="sedentary">Sedentary (Little or no exercise)</option>
+              <option value="light">Lightly Active (1–3 days/wk)</option>
+              <option value="moderate" selected>Moderately Active (3–5 days/wk)</option>
+              <option value="active">Active (6–7 days/wk)</option>
+              <option value="very_active">Very Active (Physical job / 2x daily)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="btn-save-onboarding" style="margin-top: 12px;">
+            Save & Continue to Dashboard
+          </button>
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initAuthGuard } from './js/auth-guard.js';
+    import { db, auth } from './js/firebase-config.js';
+    import { doc, setDoc, serverTimestamp, collection } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+    import { calculateBMI, calculateBMR, calculateTargetCalories } from './js/calculator.js';
+    import { showToast, getTodayDateString } from './js/utils.js';
+
+    let currentUser = null;
+
+    // Form & Input elements
+    const inputAge = document.getElementById('input-age');
+    const selectGender = document.getElementById('select-gender');
+    const inputHeight = document.getElementById('input-height');
+    const inputWeight = document.getElementById('input-weight');
+    const inputTargetWeight = document.getElementById('input-target-weight');
+    const selectGoal = document.getElementById('select-goal');
+    const selectActivity = document.getElementById('select-activity');
+
+    const displayBmi = document.getElementById('display-bmi');
+    const displayBmiCat = document.getElementById('display-bmi-cat');
+    const displayBmr = document.getElementById('display-bmr');
+    const displayCalories = document.getElementById('display-calories');
+    const form = document.getElementById('onboarding-form');
+    const saveBtn = document.getElementById('btn-save-onboarding');
+
+    // Live calculation function
+    function updateMetrics() {
+      const age = parseInt(inputAge.value, 10) || 0;
+      const gender = selectGender.value;
+      const height = parseFloat(inputHeight.value) || 0;
+      const weight = parseFloat(inputWeight.value) || 0;
+      const goal = selectGoal.value;
+      const activity = selectActivity.value;
+
+      const { bmi, category } = calculateBMI(weight, height);
+      const bmr = calculateBMR(weight, height, age, gender);
+      const targetCalories = calculateTargetCalories(bmr, activity, goal);
+
+      displayBmi.textContent = bmi > 0 ? bmi : '--';
+      displayBmiCat.textContent = bmi > 0 ? category : '--';
+      displayBmr.textContent = bmr > 0 ? bmr.toLocaleString() : '--';
+      displayCalories.textContent = targetCalories > 0 ? targetCalories.toLocaleString() : '--';
+
+      return { bmi, bmr, targetCalories };
+    }
+
+    // Attach real-time input listeners
+    [inputAge, selectGender, inputHeight, inputWeight, inputTargetWeight, selectGoal, selectActivity].forEach(el => {
+      el.addEventListener('input', updateMetrics);
+      el.addEventListener('change', updateMetrics);
+    });
+
+    // Guard & User Authentication State
+    initAuthGuard((user, profileData) => {
+      if (user) {
+        currentUser = user;
+        if (profileData && profileData.weightKg) {
+          inputAge.value = profileData.age || inputAge.value;
+          selectGender.value = profileData.gender || selectGender.value;
+          inputHeight.value = profileData.heightCm || inputHeight.value;
+          inputWeight.value = profileData.weightKg || inputWeight.value;
+          inputTargetWeight.value = profileData.targetWeightKg || inputTargetWeight.value;
+          selectGoal.value = profileData.fitnessGoal || selectGoal.value;
+          selectActivity.value = profileData.activityLevel || selectActivity.value;
+        }
+        updateMetrics();
+      }
+    });
+
+    // Form Submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Ensure user session exists
+      const user = currentUser || auth.currentUser;
+      if (!user) {
+        showToast('Session expired. Please log in again.', 'error');
+        setTimeout(() => window.location.replace('login.html'), 1200);
+        return;
+      }
+
+      const age = parseInt(inputAge.value, 10);
+      const gender = selectGender.value;
+      const heightCm = parseFloat(inputHeight.value);
+      const weightKg = parseFloat(inputWeight.value);
+      const targetWeightKg = parseFloat(inputTargetWeight.value);
+      const fitnessGoal = selectGoal.value;
+      const activityLevel = selectActivity.value;
+
+      if (!age || !heightCm || !weightKg || !targetWeightKg) {
+        showToast('Please provide valid physical measurements', 'warning');
+        return;
+      }
+
+      const { bmi, bmr, targetCalories } = updateMetrics();
+
+      try {
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Saving profile...';
+
+        // 1. Update/Create user document using setDoc with merge: true
+        // This guarantees success whether document existed previously or not.
+        // Keeping uid and email strictly aligns with Firestore Security Rules.
+        const userDocRef = doc(db, 'users', user.uid);
+        await setDoc(userDocRef, {
+          uid: user.uid,
+          email: user.email,
+          name: user.displayName || user.email.split('@')[0],
+          age,
+          gender,
+          heightCm,
+          weightKg,
+          targetWeightKg,
+          fitnessGoal,
+          activityLevel,
+          bmi,
+          bmr,
+          dailyCalories: targetCalories,
+          completedOnboarding: true,
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+
+        // 2. Initial Weight Log entry creation
+        const weightLogsCol = collection(db, 'users', user.uid, 'weightLogs');
+        const newLogRef = doc(weightLogsCol);
+        await setDoc(newLogRef, {
+          logId: newLogRef.id,
+          weightKg,
+          date: getTodayDateString(),
+          createdAt: serverTimestamp()
+        });
+
+        showToast('Profile configured successfully!', 'success');
+        window.location.replace('dashboard.html');
+      } catch (err) {
+        console.error('Onboarding Save Error:', err);
+        // User ko clear error message dena
+        const errMsg = err.code ? `Error (${err.code}): ${err.message}` : (err.message || 'Failed to save profile. Please retry.');
+        showToast(errMsg, 'error');
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save & Continue to Dashboard';
+      }
+    });
+  </script>
+</body>
+</html>

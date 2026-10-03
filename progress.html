@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Progress & Analytics — GGYM</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/progress.css">
+</head>
+<body>
+  <div class="app-shell">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <a href="dashboard.html" class="brand-wrap" aria-label="GGYM Home">
+        <div class="brand-mark">G</div>
+        <span class="brand-text">GGYM</span>
+      </a>
+      <a href="calculator.html" class="icon-btn" aria-label="Open Calculator">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+          <line x1="8" y1="6" x2="16" y2="6"></line>
+          <line x1="16" y1="14" x2="16" y2="18"></line>
+          <path d="M16 10h.01"></path>
+          <path d="M12 10h.01"></path>
+          <path d="M8 10h.01"></path>
+          <path d="M12 14h.01"></path>
+          <path d="M8 14h.01"></path>
+          <path d="M12 18h.01"></path>
+          <path d="M8 18h.01"></path>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      
+      <section class="progress-header">
+        <span class="eyebrow">METRICS & ANALYTICS</span>
+        <h1 class="headline-page">Progression</h1>
+        <p class="text-muted">Track strength adaptation, volume load, and bodyweight changes.</p>
+      </section>
+
+      <!-- 4-Stat Macro Grid -->
+      <section class="progress-stats-grid" aria-label="Core Performance Summary">
+        <div class="progress-stat-card">
+          <span class="stat-label">Workouts</span>
+          <div class="stat-val text-num" id="stat-total-workouts">0</div>
+          <span class="stat-sub">Lifetime sessions</span>
+        </div>
+        <div class="progress-stat-card">
+          <span class="stat-label">Streak</span>
+          <div class="stat-val text-num" id="stat-current-streak">0</div>
+          <span class="stat-sub">Consecutive active</span>
+        </div>
+        <div class="progress-stat-card">
+          <span class="stat-label">Sets Logged</span>
+          <div class="stat-val text-num" id="stat-total-sets">0</div>
+          <span class="stat-sub">Working sets</span>
+        </div>
+        <div class="progress-stat-card">
+          <span class="stat-label">Total Volume</span>
+          <div class="stat-val text-num" id="stat-total-volume">0 t</div>
+          <span class="stat-sub">Load moved</span>
+        </div>
+      </section>
+
+      <!-- Manual SVG Weight Trend Chart -->
+      <section class="chart-card">
+        <div class="chart-header-row">
+          <h2 class="chart-title">Bodyweight Trend</h2>
+          <span class="chart-delta-indicator" id="weight-trend-delta">--</span>
+        </div>
+        <div class="svg-chart-container" id="weight-chart-wrapper">
+          <!-- Injected via progress.js -->
+        </div>
+      </section>
+
+      <!-- Manual SVG Strength Volume Chart -->
+      <section class="chart-card">
+        <div class="chart-header-row">
+          <h2 class="chart-title">Session Volume Load</h2>
+          <span class="text-muted" style="font-size:0.75rem;">Kg / session</span>
+        </div>
+        <div class="svg-chart-container" id="volume-chart-wrapper">
+          <!-- Injected via progress.js -->
+        </div>
+      </section>
+
+      <!-- Personal Records (PR) Board -->
+      <section class="card pr-card">
+        <div class="chart-header-row" style="margin-bottom: 12px;">
+          <h2 class="chart-title">Personal Records (PR)</h2>
+          <span class="text-muted" style="font-size: 0.75rem;">Max 1-Rep Weight</span>
+        </div>
+        <div class="pr-list" id="pr-list-container">
+          <!-- Injected via progress.js -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav" aria-label="Bottom Navigation">
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+      </a>
+      <a href="workout.html" class="nav-item">
+        <span class="nav-icon">🏋️</span>
+        <span>Workout</span>
+      </a>
+      <a href="history.html" class="nav-item">
+        <span class="nav-icon">🕘</span>
+        <span>History</span>
+      </a>
+      <a href="progress.html" class="nav-item active" aria-current="page">
+        <span class="nav-icon">📊</span>
+        <span>Progress</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script type="module" src="js/progress.js"></script>
+</body>
+</html>
